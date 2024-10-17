@@ -55,7 +55,7 @@ func TestSendText(t *testing.T) {
 	}
 	defer radio.Close()
 
-	err = radio.SendTextMessage("Test", 0)
+	err = radio.SendTextMessage("Test", 0, 0)
 
 	if err != nil {
 		t.Fatalf("Error when communicating with radio: %v", err)
@@ -158,7 +158,7 @@ func TestSetRadioConfig(t *testing.T) {
 	}
 	defer radio.Close()
 
-	err = radio.SetRadioConfig("DebugLogEnabled", "True")
+	err = radio.SetRadioConfig("LedHeartbeatDisabled", "True")
 	if err != nil {
 		t.Fatalf("Error setting config: %v", err)
 	}
@@ -173,7 +173,7 @@ func TestSetRadioConfig(t *testing.T) {
 	for _, config := range configPackets {
 
 		if device := config.Config.GetDevice(); device != nil {
-			if !device.DebugLogEnabled {
+			if !device.LedHeartbeatDisabled {
 				t.Fatalf("Error setting config settings")
 			}
 		}

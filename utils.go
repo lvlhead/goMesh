@@ -36,3 +36,7 @@ func genPSK256() []byte {
 
 	return token
 }
+
+func Int32(v int32) *int32 {
+	return &v
+}

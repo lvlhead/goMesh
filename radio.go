@@ -362,9 +362,9 @@ func (r *Radio) SetModemMode(mode string) error {
 func (r *Radio) SetLocation(lat float64, long float64, alt int32) error {
 
 	positionPacket := pb.Position{
-		LatitudeI:  int32(lat),
-		LongitudeI: int32(long),
-		Altitude:   int32(alt),
+		LatitudeI:  Int32(int32(lat)),
+		LongitudeI: Int32(int32(long)),
+		Altitude:   Int32(alt),
 		Time:       0,
 	}
 
@@ -409,8 +409,8 @@ func (r *Radio) SetLocation(lat float64, long float64, alt int32) error {
 // Send a factory reset command to the radio
 func (r *Radio) FactoryRest() error {
 	adminPacket := pb.AdminMessage{
-		PayloadVariant: &pb.AdminMessage_FactoryReset{
-			FactoryReset: 1,
+		PayloadVariant: &pb.AdminMessage_FactoryResetConfig{
+			FactoryResetConfig: 1,
 		},
 	}
 	out, err := proto.Marshal(&adminPacket)
